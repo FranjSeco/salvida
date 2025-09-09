@@ -86,9 +86,9 @@ uvicorn main:app --reload
   "phone": "string",
   "email": "string",
   "avatar": "string",
-  "role": "user || admin"
-  "bookings": {
-     {
+  "role": "user || admin",
+  "bookings": [
+    {
       "id": "uuid",
       "date": "timestamp",
       "prm": "uuid",
@@ -96,9 +96,9 @@ uvicorn main:app --reload
       "type": "singleService || voucher",
       "status": "requested || approved || canceled || done",
       "pickupAddress": "string",
-      "destinationAddress": "string",
+      "destinationAddress": "string"
     }
-  }
+  ]
 }
 ```
 
@@ -118,23 +118,23 @@ uvicorn main:app --reload
   "countryCode": "string",
   "phone": "string",
   "emergenciesPhoneNumbers": ["string"],
-  "pickupAddresses": {
+  "pickupAddresses": [
     {
       "id": "uuid",
       "address": "string",
       "location": "string",
       "contactPerson": "string || null"
     }
-  },
-  "destinationAddresses": {
+  ],
+  "destinationAddresses": [
     {
       "id": "uuid",
       "address": "string",
       "location": "string",
       "alias": "string"
     }
-  },
-  "bookings": {
+  ],
+  "bookings": [
     {
       "id": "uuid",
       "date": "timestamp",
@@ -143,9 +143,9 @@ uvicorn main:app --reload
       "type": "singleService || voucher",
       "status": "requested || approved || canceled || done",
       "pickupAddress": "string",
-      "destinationAdress": "string"
+      "destinationAddress": "string"
     }
-  }
+  ]
 }
 ```
 
