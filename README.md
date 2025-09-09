@@ -22,7 +22,7 @@ La misión de Salvida es facilitar el transporte accesible y el acompañamiento 
 
 **Deployment:** Por definir; opciones [Vercel](https://vercel.com/) o [Heroku](https://www.heroku.com/) 📟
 
-**UX/UI Design**: [Figma](https://www.figma.com/files/project/23313500) · [ReactCalendar](https://www.react-calendar.com/) ✒️ 📐
+**UX/UI Design**: Figma · [ReactCalendar](https://www.react-calendar.com/) ✒️ 📐
 
 **Styling:** [HeroUI](https://www.heroui.com/) / [ShadCN](https://ui.shadcn.com/) 💎
 
@@ -65,11 +65,15 @@ uvicorn main:app --reload
 
 ## Pages
 
-- **Landing/Home**  
-  Página de inicio.
+- **Landing/Home**
 
-- **User Profile** (Perfil de Usuario: `user` || `admin`)  
-  Representa los datos de un usuario o administrador.
+  Página de inicio donde se presenta el servicio y se ofrecen llamadas a la acción para registrarse o iniciar sesión.
+
+  ![Landing](https://github.com/user-attachments/assets/8c57073a-bdf3-47f1-b6ea-632ab6c56dde)
+
+- **User Profile** (Perfil de Usuario: `user` || `admin`)
+
+  Permite a cada persona gestionar su información de contacto y revisar sus reservas activas. Funciona como el centro de control para la cuenta de un usuario o administrador.
 
 ### Entidad: User
 
@@ -103,6 +107,8 @@ uvicorn main:app --reload
 ```
 
 - **PRM Profile**
+
+  Muestra los datos relevantes de la persona con movilidad reducida (PRM), incluidos contactos de emergencia y direcciones frecuentes. Ayuda a organizar la información necesaria para cada servicio de transporte.
 
 ### Entidad: PRM
 
@@ -164,9 +170,15 @@ uvicorn main:app --reload
 }
 ```
 
-- Admin panel
-- About
-  Página dedicada al servicio
+- **Admin panel**
+
+  Sección destinada a la gestión interna; permite a los administradores revisar usuarios, PRM y reservas para mantener la plataforma operativa.
+
+- **About**
+
+  Página dedicada al servicio, su misión y el equipo que lo impulsa.
+
+  ![About](https://github.com/user-attachments/assets/6699c177-6be9-4f71-a2d7-135785cb7b4d)
 
 ### Relaciones DDBB
 
