@@ -8,21 +8,21 @@ La misión de Salvida es facilitar el transporte accesible y el acompañamiento 
 
 ## Tech Stack
 
-**Frontend:** Astro 🚀 + React ⚛
+**Frontend:** [Astro](https://astro.build/) 4.x 🚀 + [React](https://react.dev/) 18.x ⚛
 
-**Backend:** Python 🐍
+**Backend:** [Python&nbsp;3.12](https://www.python.org/) 🐍
 
 **Store:** [NanoStores](https://github.com/nanostores/nanostores)
 
-**Data Fetching:** Tanstack - react query 🌴🌐
+**Data Fetching:** [TanStack Query](https://tanstack.com/query/latest) 5 🌴🌐
 
-**Authentication:** BetterAuth? 🔐
+**Authentication:** Por definir; se evalúa [Better&nbsp;Auth](https://better-auth.com/) 🔐
 
-**DB:** SQL 💾
+**DB:** [PostgreSQL](https://www.postgresql.org/) (versión por definir) 💾
 
-**Deployment:** ¿Vercel, Heroku? 📟
+**Deployment:** Por definir; opciones [Vercel](https://vercel.com/) o [Heroku](https://www.heroku.com/) 📟
 
-**UX/UI Design**: [Figma](https://www.figma.com/files/project/23313500) [ReactCalendar](https://www.react-calendar.com/) ✒️ 📐
+**UX/UI Design**: [Figma](https://www.figma.com/files/project/23313500) · [ReactCalendar](https://www.react-calendar.com/) ✒️ 📐
 
 **Styling:** [HeroUI](https://www.heroui.com/) / [ShadCN](https://ui.shadcn.com/) 💎
 
