@@ -4,7 +4,7 @@
 
 ![SalVidaLogo|100](https://github.com/user-attachments/assets/1fb0c014-54ac-48df-81b0-b7bda1f0357c)
 
-Project description
+La misión de Salvida es facilitar el transporte accesible y el acompañamiento para personas con movilidad reducida. Sus objetivos incluyen ofrecer un servicio seguro, flexible y confiable que conecte usuarios, familias y profesionales, promoviendo la autonomía y la inclusión. El público objetivo abarca a personas mayores, personas con discapacidad y las organizaciones que apoyan su movilidad diaria.
 
 ## Tech Stack
 
