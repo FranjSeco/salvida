@@ -26,6 +26,43 @@ La misión de Salvida es facilitar el transporte accesible y el acompañamiento 
 
 **Styling:** [HeroUI](https://www.heroui.com/) / [ShadCN](https://ui.shadcn.com/) 💎
 
+## Instalación
+
+### Requisitos previos
+- [Node.js](https://nodejs.org/) 20.x y npm
+- [Python](https://www.python.org/) 3.12
+- [PostgreSQL](https://www.postgresql.org/) (opcional para entorno local)
+
+### Dependencias
+#### Frontend
+```bash
+cd frontend
+npm install
+```
+
+#### Backend
+```bash
+cd backend
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+## Uso
+
+### Frontend
+```bash
+cd frontend
+npm run dev
+```
+
+### Backend
+```bash
+cd backend
+source .venv/bin/activate
+uvicorn main:app --reload
+```
+
 ## Pages
 
 - **Landing/Home**  
