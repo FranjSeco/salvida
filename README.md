@@ -192,3 +192,14 @@ Images
 ![ScreenSaver2](https://github.com/user-attachments/assets/6699c177-6be9-4f71-a2d7-135785cb7b4d)
 ![ScreenSaver](https://github.com/user-attachments/assets/444171ea-7270-4bce-9ba6-2253f2445158)
 ![SalVidaLogo](https://github.com/user-attachments/assets/1fb0c014-54ac-48df-81b0-b7bda1f0357c)
+
+## Contribución
+
+Las contribuciones son bienvenidas. Si deseas colaborar:
+- Abre un issue para discutir cambios importantes.
+- Envía un pull request con tus mejoras.
+- Asegúrate de que las pruebas pasen y sigue las convenciones del proyecto.
+
+## Licencia
+
+Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más información.
