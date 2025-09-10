@@ -1,0 +1,33 @@
+---
+const links = [
+  { href: '/', text: 'Inicio' },
+  { href: '/about', text: 'Sobre nosotros' },
+  { href: '/profile', text: 'Perfil' },
+  { href: '/prm', text: 'PRM' },
+  { href: '/admin', text: 'Admin' }
+];
+---
+<nav>
+  <ul>
+    {links.map(link => (
+      <li><a href={link.href}>{link.text}</a></li>
+    ))}
+  </ul>
+</nav>
+<style>
+  nav {
+    background: var(--color-primary);
+    padding: 1rem;
+  }
+  ul {
+    display: flex;
+    list-style: none;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+  }
+  a {
+    color: white;
+    text-decoration: none;
+  }
+</style>
