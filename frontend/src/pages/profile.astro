@@ -1,13 +1,7 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
 import UserProfile from '../components/UserProfile.jsx';
 ---
-
-<html lang="es">
-  <head>
-    <meta charset="utf-8" />
-    <title>Perfil</title>
-  </head>
-  <body>
-    <UserProfile client:load />
-  </body>
-</html>
+<BaseLayout title="Perfil">
+  <UserProfile client:load />
+</BaseLayout>

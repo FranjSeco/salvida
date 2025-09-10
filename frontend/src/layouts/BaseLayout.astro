@@ -1,0 +1,13 @@
+---
+import '../styles/theme.css';
+---
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>{Astro.props.title || 'Salvida'}</title>
+    <script type="module" src="../theme/client.js"></script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
