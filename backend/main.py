@@ -1,3 +1,4 @@
+
 from fastapi import FastAPI
 from .database import Base, engine, SessionLocal
 from .routers import users, prms, bookings
@@ -5,7 +6,11 @@ from .models.user import User
 from .models.prm import PRM
 from .models.booking import Booking
 
+from auth import router as auth_router, get_current_user
+
+
 app = FastAPI(title="Salvida API")
+
 Base.metadata.create_all(bind=engine)
 
 
@@ -57,7 +62,7 @@ app.include_router(users.router)
 app.include_router(prms.router)
 app.include_router(bookings.router)
 
-
 @app.get("/")
 def root():
     return {"message": "Salvida API"}
+
