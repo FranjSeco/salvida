@@ -2,6 +2,45 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 <BaseLayout title="Salvida">
-  <h1>Bienvenido a Salvida</h1>
-  <p>Servicio de transporte accesible.</p>
+  <section class="hero">
+    <h1>Bienvenido a Salvida</h1>
+    <p>Servicio de transporte accesible y acompañamiento para personas con movilidad reducida.</p>
+  </section>
+
+  <section class="features">
+    <h2>¿Qué ofrecemos?</h2>
+    <ul>
+      <li>Transporte seguro y adaptado a cada necesidad.</li>
+      <li>Acompañamiento por profesionales cualificados.</li>
+      <li>Gestión sencilla de reservas y perfiles.</li>
+    </ul>
+  </section>
+
+  <section class="cta">
+    <h2>Únete a la comunidad</h2>
+    <p>
+      <a href="/profile" class="btn">Crea tu perfil</a>
+      <a href="/about" class="btn btn-secondary">Conócenos</a>
+    </p>
+  </section>
+
+  <style>
+    .hero {
+      text-align: center;
+      padding: 4rem 1rem;
+      background: var(--color-primary);
+      color: #fff;
+      border-radius: 8px;
+    }
+    .features ul {
+      list-style: disc;
+      padding-left: 1.25rem;
+    }
+    .cta {
+      text-align: center;
+    }
+    .cta .btn {
+      margin-right: 0.5rem;
+    }
+  </style>
 </BaseLayout>
