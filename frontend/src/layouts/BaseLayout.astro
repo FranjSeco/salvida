@@ -1,5 +1,6 @@
 ---
 import '../styles/theme.css';
+import NavBar from '../components/NavBar.astro';
 ---
 <html lang="es">
   <head>
@@ -8,6 +9,7 @@ import '../styles/theme.css';
     <script type="module" src="../theme/client.js"></script>
   </head>
   <body>
+    <NavBar />
     <slot />
   </body>
 </html>
