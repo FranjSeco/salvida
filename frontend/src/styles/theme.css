@@ -17,3 +17,33 @@ body {
 a {
   color: var(--color-primary);
 }
+
+main.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+section {
+  margin-bottom: 2rem;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--color-primary);
+  margin-top: 0;
+}
+
+.btn {
+  display: inline-block;
+  background: var(--color-primary);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.btn-secondary {
+  background: var(--color-secondary);
+}

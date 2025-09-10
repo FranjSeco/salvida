@@ -2,6 +2,30 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 <BaseLayout title="Sobre Salvida">
-  <h2>Sobre nosotros</h2>
-  <p>Misión, visión y equipo de Salvida.</p>
+  <section>
+    <h2>Nuestra misión</h2>
+    <p>Facilitar el transporte accesible y el acompañamiento seguro para que cada persona mantenga su autonomía.</p>
+  </section>
+
+  <section>
+    <h2>Visión</h2>
+    <p>Construir una comunidad inclusiva en la que las barreras de movilidad desaparezcan mediante tecnología y apoyo humano.</p>
+  </section>
+
+  <section>
+    <h2>El equipo</h2>
+    <p>Salvida está formado por profesionales comprometidos con la accesibilidad:</p>
+    <ul>
+      <li>Ana – Fundadora y coordinadora.</li>
+      <li>Carlos – Responsable de operaciones.</li>
+      <li>Laura – Especialista en atención al usuario.</li>
+    </ul>
+  </section>
+
+  <style>
+    ul {
+      list-style: disc;
+      padding-left: 1.25rem;
+    }
+  </style>
 </BaseLayout>
