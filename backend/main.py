@@ -1,8 +1,12 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Depends
 from pydantic import BaseModel
 from typing import List, Optional
 
+from auth import router as auth_router, get_current_user
+
+
 app = FastAPI(title="Salvida API")
+app.include_router(auth_router, prefix="/auth")
 
 
 class Booking(BaseModel):
@@ -110,12 +114,12 @@ def root():
 
 
 @app.get("/users", response_model=List[User])
-def get_users():
+def get_users(current_user=Depends(get_current_user)):
     return list(users.values())
 
 
 @app.get("/users/{user_id}", response_model=User)
-def get_user(user_id: str):
+def get_user(user_id: str, current_user=Depends(get_current_user)):
     user = users.get(user_id)
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
@@ -123,12 +127,12 @@ def get_user(user_id: str):
 
 
 @app.get("/prms", response_model=List[PRM])
-def get_prms():
+def get_prms(current_user=Depends(get_current_user)):
     return list(prms.values())
 
 
 @app.get("/prms/{prm_id}", response_model=PRM)
-def get_prm(prm_id: str):
+def get_prm(prm_id: str, current_user=Depends(get_current_user)):
     prm = prms.get(prm_id)
     if not prm:
         raise HTTPException(status_code=404, detail="PRM not found")
@@ -136,12 +140,12 @@ def get_prm(prm_id: str):
 
 
 @app.get("/bookings", response_model=List[Booking])
-def get_bookings():
+def get_bookings(current_user=Depends(get_current_user)):
     return list(bookings.values())
 
 
 @app.get("/bookings/{booking_id}", response_model=Booking)
-def get_booking(booking_id: str):
+def get_booking(booking_id: str, current_user=Depends(get_current_user)):
     booking = bookings.get(booking_id)
     if not booking:
         raise HTTPException(status_code=404, detail="Booking not found")
