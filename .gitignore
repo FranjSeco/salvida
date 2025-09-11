@@ -10,3 +10,5 @@ backend/*.py[cod]
 
 __pycache__/
 backend/*.db
+backend/.env
+salvida.db
