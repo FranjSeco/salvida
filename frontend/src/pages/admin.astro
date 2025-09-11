@@ -1,19 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import BookingList from '../components/BookingList.jsx';
 ---
 <BaseLayout title="Panel Admin">
-  <section>
-    <h2>Usuarios</h2>
-    <p>Gestiona cuentas registradas y roles.</p>
-  </section>
-
-  <section>
-    <h2>Personas PRM</h2>
-    <p>Revisa perfiles de personas con movilidad reducida.</p>
-  </section>
-
-  <section>
-    <h2>Reservas</h2>
-    <p>Controla solicitudes y estado de los servicios.</p>
-  </section>
+  <BookingList client:load />
 </BaseLayout>
