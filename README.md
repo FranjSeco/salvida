@@ -63,6 +63,53 @@ source .venv/bin/activate
 uvicorn main:app --reload
 ```
 
+## Cómo iniciar el backend
+
+### Instalación y configuración de PostgreSQL
+
+1. **Instala PostgreSQL**
+   - Descarga e instala desde https://www.postgresql.org/download/
+   - Elige una contraseña para el usuario superusuario `postgres`.
+
+2. **Crea usuario y base de datos**
+   - Abre la consola de PostgreSQL (`SQL Shell (psql)` o PowerShell en la carpeta de instalación).
+   - Conéctate como superusuario:
+     ```powershell
+     .\psql -U postgres
+     ```
+   - Ejecuta los siguientes comandos, eligiendo el nombre de usuario, contraseña y base de datos que prefieras:
+     ```sql
+     CREATE USER <usuario> WITH PASSWORD '<contraseña>';
+     CREATE DATABASE <nombre_db> OWNER <usuario>;
+     ```
+   - Guarda el usuario, contraseña y nombre de la base de datos para usarlos en la configuración del backend.
+
+3. **Configura las variables de entorno**
+   - Crea el archivo `backend/.env` con:
+     ```
+     DATABASE_URL=postgresql://<usuario>:<contraseña>@localhost:5432/<nombre_db>
+     SECRET_KEY=tu-clave-secreta
+     ALGORITHM=HS256
+     ACCESS_TOKEN_EXPIRE_MINUTES=30
+     ```
+   - Reemplaza `<usuario>`, `<contraseña>` y `<nombre_db>` por los valores que elegiste.
+   - El valor de `SECRET_KEY` puede ser cualquier cadena segura.
+
+4. **Instala dependencias y levanta el backend**
+   - Activa el entorno virtual:
+     ```bash
+     source backend/.venv/Scripts/activate
+     ```
+   - Instala dependencias:
+     ```bash
+     pip install -r backend/requirements.txt
+     ```
+   - Desde la raíz del proyecto, ejecuta:
+     ```bash
+     uvicorn backend.main:app --reload
+     ```
+   - Accede a la API en [http://127.0.0.1:8000](http://127.0.0.1:8000) y a la documentación en [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
+
 #### Variables de entorno
 
 Antes de iniciar los servicios, copia los archivos de ejemplo y ajusta los valores según tu entorno local:
