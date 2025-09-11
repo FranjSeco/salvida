@@ -65,11 +65,23 @@ uvicorn main:app --reload
 
 #### Variables de entorno
 
-El backend usa autenticación basada en JWT. Antes de iniciar el servicio, define las siguientes variables de entorno:
+Antes de iniciar los servicios, copia los archivos de ejemplo y ajusta los valores según tu entorno local:
 
+```bash
+cp backend/.env.example backend/.env
+cp frontend/.env.example frontend/.env
+```
+
+**Backend** (`backend/.env`)
+
+- `DATABASE_URL`: URL de conexión a la base de datos.
 - `SECRET_KEY`: clave secreta para firmar los tokens.
 - `ALGORITHM`: algoritmo de firma (por defecto `HS256`).
 - `ACCESS_TOKEN_EXPIRE_MINUTES`: tiempo de expiración del token en minutos.
+
+**Frontend** (`frontend/.env`)
+
+- `VITE_API_URL`: URL base del backend.
 
 ## Pages
 
