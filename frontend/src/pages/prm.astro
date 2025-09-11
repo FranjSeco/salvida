@@ -1,33 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PrmList from '../components/PrmList.jsx';
 ---
 <BaseLayout title="Perfil PRM">
-  <section>
-    <h2>Datos personales</h2>
-    <p>Información básica de la persona beneficiaria del servicio.</p>
-  </section>
-
-  <section>
-    <h2>Direcciones frecuentes</h2>
-    <ul>
-      <li>Casa</li>
-      <li>Centro médico</li>
-      <li>Lugar de trabajo</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Contactos de emergencia</h2>
-    <ul>
-      <li>María – 666 123 456</li>
-      <li>Juan – 666 654 321</li>
-    </ul>
-  </section>
-
-  <style>
-    ul {
-      list-style: disc;
-      padding-left: 1.25rem;
-    }
-  </style>
+  <PrmList client:load />
 </BaseLayout>
