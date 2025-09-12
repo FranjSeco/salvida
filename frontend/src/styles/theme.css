@@ -1,17 +1,36 @@
 :root {
-  --color-primary: #1E88E5;
-  --color-secondary: #F4511E;
-  --color-accent: #8E24AA;
-  --color-neutral: #424242;
-  --color-background: #FFFFFF;
-  --color-foreground: #212121;
+  /* Colores principales del diseño de Figma */
+  --color-primary: #522872;
+  --color-secondary: #4d276b;
+  --color-accent: #76558a;
+  --color-neutral: #000000;
+  --color-background: #ffffff;
+  --color-foreground: #000000;
+  --color-white: #fefefe;
+
+  /* Gradientes */
+  --gradient-header: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(157, 117, 169, 1) 100%
+  );
+  --gradient-header-alt: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(82, 40, 114, 0.5) 100%
+  );
+
+  /* Tipografías */
+  --font-title: 'Amatica SC', cursive;
+  --font-body: 'Roboto Flex', sans-serif;
 }
 
 body {
   background-color: var(--color-background);
   color: var(--color-foreground);
-  font-family: system-ui, sans-serif;
+  font-family: var(--font-body);
   margin: 0;
+  line-height: 1.6;
 }
 
 a {
@@ -33,17 +52,400 @@ h2,
 h3 {
   color: var(--color-primary);
   margin-top: 0;
+  font-family: var(--font-title);
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 2.5rem;
+  line-height: 1.46;
+}
+
+h2 {
+  font-size: 2rem;
+  line-height: 1.46;
+}
+
+h3 {
+  font-size: 1.5rem;
+  line-height: 1.46;
 }
 
 .btn {
   display: inline-block;
   background: var(--color-primary);
-  color: #fff;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
+  color: var(--color-white);
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
   text-decoration: none;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.btn:hover {
+  background: var(--color-secondary);
+  transform: translateY(-2px);
+  box-shadow: 0px 6px 8px 0px rgba(0, 0, 0, 0.3);
 }
 
 .btn-secondary {
   background: var(--color-secondary);
+}
+
+.btn-secondary:hover {
+  background: var(--color-accent);
+}
+
+/* Estilos para listas */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(118, 85, 138, 0.2);
+}
+
+li:last-child {
+  border-bottom: none;
+}
+
+/* Estilos para contenedores */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* Estilos para cards */
+.card {
+  background: var(--color-background);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  margin-bottom: 1rem;
+}
+
+/* Estilos para el header */
+.header {
+  background: var(--gradient-header);
+  padding: 1rem 0;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+/* Estilos para el footer */
+.footer {
+  background: var(--color-background);
+  border-top: 1px solid var(--color-accent);
+  padding: 2rem 0 1rem;
+  margin-top: 3rem;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.footer-bottom {
+  background: var(--color-secondary);
+  color: var(--color-white);
+  text-align: center;
+  padding: 1rem;
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+/* Estilos para componentes React */
+.page-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 2rem 0;
+}
+
+.page-header h1 {
+  margin-bottom: 0.5rem;
+}
+
+.page-header p {
+  color: var(--color-accent);
+  font-size: 1.125rem;
+  margin: 0;
+}
+
+/* Estados de carga y error */
+.loading-container,
+.error-container,
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  background: var(--color-background);
+  border-radius: 8px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--color-accent);
+  border-top: 4px solid var(--color-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.error-container {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.empty-state {
+  background: #f3e5f5;
+  color: var(--color-primary);
+}
+
+/* Grids y cards */
+.bookings-grid,
+.prms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.booking-card,
+.prm-card {
+  background: var(--color-background);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.booking-card:hover,
+.prm-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.3);
+}
+
+/* Headers de cards */
+.booking-header,
+.prm-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(118, 85, 138, 0.2);
+}
+
+.booking-title,
+.prm-name {
+  color: var(--color-primary);
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.booking-status {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status-pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.status-confirmed {
+  background: #d4edda;
+  color: #155724;
+}
+
+.status-cancelled {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+/* Información de cards */
+.booking-details,
+.prm-details {
+  margin-bottom: 1.5rem;
+}
+
+.booking-info,
+.prm-info-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.info-label,
+.detail-label {
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+.info-value,
+.detail-value {
+  color: var(--color-neutral);
+  text-align: right;
+}
+
+/* Acciones de cards */
+.booking-actions,
+.prm-actions,
+.profile-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.btn-small {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+
+/* Perfil de usuario */
+.profile-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  background: var(--color-background);
+  border-radius: 8px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.profile-avatar,
+.prm-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--gradient-header);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.avatar-text {
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: 2rem;
+  color: var(--color-primary);
+}
+
+.profile-name {
+  color: var(--color-primary);
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: 1.75rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.profile-role,
+.prm-type {
+  color: var(--color-accent);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+}
+
+.profile-details {
+  margin-bottom: 2rem;
+}
+
+.detail-section {
+  background: var(--color-background);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.detail-section h3 {
+  color: var(--color-primary);
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin: 0 0 1rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-accent);
+}
+
+.detail-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.detail-item {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1rem;
+  align-items: center;
+}
+
+.detail-label {
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+.detail-value {
+  color: var(--color-neutral);
+}
+
+/* Responsive para componentes */
+@media (max-width: 768px) {
+  .bookings-grid,
+  .prms-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .detail-item {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .detail-value {
+    text-align: left;
+  }
+
+  .booking-actions,
+  .prm-actions,
+  .profile-actions {
+    justify-content: center;
+  }
 }

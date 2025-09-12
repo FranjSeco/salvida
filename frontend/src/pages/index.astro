@@ -1,46 +1,233 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
-<BaseLayout title="Salvida">
+<BaseLayout title="Salvida - Transporte Accesible">
   <section class="hero">
-    <h1>Bienvenido a Salvida</h1>
-    <p>Servicio de transporte accesible y acompañamiento para personas con movilidad reducida.</p>
+    <div class="hero-content">
+      <h1>Bienvenido a Salvida</h1>
+      <p class="hero-subtitle">Servicio de transporte accesible y acompañamiento para personas con movilidad reducida.</p>
+      <div class="hero-actions">
+        <a href="/profile" class="btn btn-hero">Crea tu perfil</a>
+        <a href="/about" class="btn btn-secondary btn-hero">Conócenos</a>
+      </div>
+    </div>
   </section>
 
   <section class="features">
-    <h2>¿Qué ofrecemos?</h2>
-    <ul>
-      <li>Transporte seguro y adaptado a cada necesidad.</li>
-      <li>Acompañamiento por profesionales cualificados.</li>
-      <li>Gestión sencilla de reservas y perfiles.</li>
-    </ul>
+    <div class="features-container">
+      <h2>¿Qué ofrecemos?</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Transporte Seguro</h3>
+          <p>Transporte seguro y adaptado a cada necesidad específica de movilidad.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+              <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Profesionales Cualificados</h3>
+          <p>Acompañamiento por profesionales cualificados y con experiencia.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke="currentColor" stroke-width="2"/>
+              <line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Gestión Sencilla</h3>
+          <p>Gestión sencilla de reservas y perfiles desde cualquier dispositivo.</p>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section class="cta">
-    <h2>Únete a la comunidad</h2>
-    <p>
-      <a href="/profile" class="btn">Crea tu perfil</a>
-      <a href="/about" class="btn btn-secondary">Conócenos</a>
-    </p>
+    <div class="cta-content">
+      <h2>Únete a la comunidad Salvida</h2>
+      <p>Forma parte de una red de apoyo y transporte accesible para todos.</p>
+      <div class="cta-actions">
+        <a href="/profile" class="btn">Crea tu perfil</a>
+        <a href="/prm" class="btn btn-secondary">Ver personas PRM</a>
+      </div>
+    </div>
   </section>
 
   <style>
     .hero {
-      text-align: center;
+      background: var(--gradient-header);
       padding: 4rem 1rem;
-      background: var(--color-primary);
-      color: #fff;
       border-radius: 8px;
+      margin-bottom: 3rem;
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     }
-    .features ul {
-      list-style: disc;
-      padding-left: 1.25rem;
-    }
-    .cta {
+
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
       text-align: center;
     }
-    .cta .btn {
-      margin-right: 0.5rem;
+
+    .hero h1 {
+      color: var(--color-primary);
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--color-neutral);
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-hero {
+      padding: 1rem 2rem;
+      font-size: 1.125rem;
+    }
+
+    .features {
+      margin-bottom: 3rem;
+    }
+
+    .features-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .features h2 {
+      text-align: center;
+      margin-bottom: 3rem;
+      font-size: 2.5rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .feature-card {
+      background: var(--color-background);
+      padding: 2rem;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.3);
+    }
+
+    .feature-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--gradient-header);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      color: var(--color-primary);
+    }
+
+    .feature-card h3 {
+      color: var(--color-primary);
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .feature-card p {
+      color: var(--color-neutral);
+      line-height: 1.6;
+    }
+
+    .cta {
+      background: var(--color-background);
+      padding: 3rem 1rem;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    }
+
+    .cta-content {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .cta h2 {
+      color: var(--color-primary);
+      font-size: 2.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .cta p {
+      color: var(--color-neutral);
+      font-size: 1.125rem;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.25rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1.125rem;
+      }
+
+      .hero-actions, .cta-actions {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn-hero {
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .features h2 {
+        font-size: 2rem;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta h2 {
+        font-size: 1.875rem;
+      }
     }
   </style>
 </BaseLayout>
