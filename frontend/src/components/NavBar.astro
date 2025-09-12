@@ -1,36 +1,147 @@
 ---
-const links = [
+// Estado del usuario (esto normalmente vendría de un store o contexto)
+const userState = {
+  isLoggedIn: true,
+  isAdmin: false,
+  userName: 'Fran'
+};
+
+const mainLinks = [
   { href: '/', text: 'INICIO' },
-  { href: '/about', text: 'SOBRE NOSOTRAS' },
-  { href: '/profile', text: 'PERFIL' },
-  { href: '/prm', text: 'PRM' },
-  { href: '/admin', text: 'ADMIN' }
+  { href: '/about', text: '¿POR QUÉ SALVIDA?' },
+  { href: '/about', text: 'SOBRE NOSOTRAS' }
+];
+
+const userMenuItems = userState.isLoggedIn ? [
+  { href: '/profile', text: 'PERFIL', icon: 'user' },
+  ...(userState.isAdmin ? [{ href: '/admin', text: 'ADMIN', icon: 'admin' }] : []),
+  { href: '/logout', text: 'CERRAR SESIÓN', icon: 'logout' }
+] : [
+  { href: '/login', text: 'ACCEDE', icon: 'login' },
+  { href: '/register', text: 'CREA TU CUENTA', icon: 'register' }
 ];
 ---
-<header class="header">
+<header class="header" id="header">
   <div class="header-container">
     <div class="logo">
       <img src="/logo.png" alt="Salvida" class="logo-img" />
     </div>
-    <nav class="nav">
+    
+    <!-- Navegación principal (solo visible en desktop) -->
+    <nav class="nav-main">
       <ul class="nav-list">
-        {links.map(link => (
+        {mainLinks.map(link => (
           <li class="nav-item">
             <a href={link.href} class="nav-link">{link.text}</a>
           </li>
         ))}
       </ul>
     </nav>
-    <div class="user-actions">
-      <button class="user-btn" aria-label="Usuario">
+
+    <!-- Área de usuario -->
+    <div class="user-area">
+      {userState.isLoggedIn && (
+        <span class="user-greeting">Hola, {userState.userName}</span>
+      )}
+      
+      <!-- Botón de menú hamburguesa -->
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z" fill="currentColor"/>
-          <path d="M12 14C7.58172 14 4 17.5817 4 22H20C20 17.5817 16.4183 14 12 14Z" fill="currentColor"/>
+          <path d="M3 12H21M3 6H21M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </button>
     </div>
   </div>
+
+  <!-- Menú desplegable -->
+  <div class="dropdown-menu" id="dropdownMenu">
+    <div class="dropdown-content">
+      {userMenuItems.map(item => (
+        <a href={item.href} class="dropdown-item">
+          <div class="item-icon">
+            {item.icon === 'user' && (
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            )}
+            {item.icon === 'admin' && (
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+            )}
+            {item.icon === 'logout' && (
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                <path d="M9 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="16,17 21,12 16,7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="21" y1="12" x2="9" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            )}
+            {item.icon === 'login' && (
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                <path d="M15 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="10,17 15,12 10,7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="15" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            )}
+            {item.icon === 'register' && (
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                <path d="M12 19L19 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            )}
+          </div>
+          <span class="item-text">{item.text}</span>
+        </a>
+      ))}
+    </div>
+  </div>
 </header>
+
+<script>
+  // Funcionalidad del menú desplegable
+  document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.getElementById('menuToggle');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+    const header = document.getElementById('header');
+
+    if (menuToggle && dropdownMenu) {
+      menuToggle.addEventListener('click', function() {
+        const isOpen = dropdownMenu.classList.contains('open');
+        
+        if (isOpen) {
+          dropdownMenu.classList.remove('open');
+          header.classList.remove('menu-open');
+          menuToggle.setAttribute('aria-label', 'Abrir menú');
+        } else {
+          dropdownMenu.classList.add('open');
+          header.classList.add('menu-open');
+          menuToggle.setAttribute('aria-label', 'Cerrar menú');
+        }
+      });
+
+      // Cerrar menú al hacer clic fuera
+      document.addEventListener('click', function(event) {
+        if (!header.contains(event.target) && dropdownMenu.classList.contains('open')) {
+          dropdownMenu.classList.remove('open');
+          header.classList.remove('menu-open');
+          menuToggle.setAttribute('aria-label', 'Abrir menú');
+        }
+      });
+
+      // Cerrar menú con tecla Escape
+      document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && dropdownMenu.classList.contains('open')) {
+          dropdownMenu.classList.remove('open');
+          header.classList.remove('menu-open');
+          menuToggle.setAttribute('aria-label', 'Abrir menú');
+        }
+      });
+    }
+  });
+</script>
 
 <style>
   .header {
@@ -40,6 +151,12 @@ const links = [
     position: sticky;
     top: 0;
     z-index: 100;
+    transition: all 0.3s ease;
+  }
+
+  .header.menu-open {
+    background: linear-gradient(180deg, rgba(254, 254, 254, 1) 0%, rgba(77, 39, 107, 1) 100%);
+    border-radius: 0px 0px 25px 25px;
   }
 
   .header-container {
@@ -55,6 +172,7 @@ const links = [
   .logo {
     display: flex;
     align-items: center;
+    z-index: 101;
   }
 
   .logo-img {
@@ -63,7 +181,8 @@ const links = [
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   }
 
-  .nav {
+  /* Navegación principal - solo visible en desktop */
+  .nav-main {
     flex: 1;
     display: flex;
     justify-content: center;
@@ -100,51 +219,172 @@ const links = [
     transform: translateY(-2px);
   }
 
-  .user-actions {
+  /* Área de usuario */
+  .user-area {
     display: flex;
     align-items: center;
     gap: 1rem;
+    z-index: 101;
   }
 
-  .user-btn {
-    background: rgba(137, 27, 221, 0);
-    border: 1px solid rgba(0, 0, 0, 0);
+  .user-greeting {
+    color: var(--color-white);
+    font-family: var(--font-title);
+    font-weight: 700;
+    font-size: 1.5rem;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  .menu-toggle {
+    background: transparent;
+    border: none;
     color: var(--color-primary);
     padding: 0.5rem;
-    border-radius: 50%;
+    border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: inset 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .user-btn:hover {
+  .menu-toggle:hover {
     background: rgba(82, 40, 114, 0.1);
     transform: scale(1.1);
   }
 
+  /* Menú desplegable */
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: linear-gradient(180deg, rgba(254, 254, 254, 1) 0%, rgba(77, 39, 107, 1) 100%);
+    border-radius: 0px 0px 25px 25px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 99;
+  }
+
+  .dropdown-menu.open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .dropdown-content {
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--color-white);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+  }
+
+  .dropdown-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(10px);
+  }
+
+  .item-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+  }
+
+  .item-icon svg {
+    color: var(--color-white);
+  }
+
+  .item-text {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+  }
+
   /* Responsive */
+  @media (max-width: 1024px) {
+    .nav-main {
+      display: none;
+    }
+  }
+
   @media (max-width: 768px) {
     .header-container {
       padding: 0.5rem;
     }
     
-    .nav-list {
-      gap: 1rem;
+    .user-greeting {
+      font-size: 1.25rem;
     }
     
-    .nav-link {
-      font-size: 1rem;
-      padding: 0.25rem 0.5rem;
+    .dropdown-content {
+      padding: 1.5rem 0.5rem;
+    }
+    
+    .item-text {
+      font-size: 1.25rem;
     }
   }
 
   @media (max-width: 480px) {
-    .nav {
+    .user-greeting {
       display: none;
     }
     
-    .header-container {
-      justify-content: space-between;
+    .dropdown-content {
+      padding: 1rem 0.5rem;
+    }
+    
+    .dropdown-item {
+      padding: 0.75rem;
+    }
+    
+    .item-text {
+      font-size: 1rem;
+    }
+  }
+
+  /* Animaciones */
+  @keyframes slideDown {
+    from {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateY(-100%);
+      opacity: 0;
     }
   }
 </style>
