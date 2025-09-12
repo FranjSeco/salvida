@@ -1,7 +1,522 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import UserProfile from '../components/UserProfile.jsx';
 ---
-<BaseLayout title="Perfil">
-  <UserProfile client:load />
+
+<BaseLayout title="Perfil de Usuario - SalVida">
+  
+  <main class="profile-page">
+    <div class="profile-container">
+      <!-- Avatar Section -->
+      <div class="avatar-section">
+        <div class="avatar-container">
+          <div class="avatar">
+            <div class="avatar-placeholder">
+              <span class="avatar-initials">U</span>
+            </div>
+          </div>
+          <button class="edit-avatar-btn" aria-label="Editar avatar">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+              <path d="M11 4H4C3.46957 4 2.96086 4.21071 2.58579 4.58579C2.21071 4.96086 2 5.46957 2 6V20C2 20.5304 2.21071 21.0391 2.58579 21.4142C2.96086 21.7893 3.46957 22 4 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M18.5 2.5C18.8978 2.10218 19.4374 1.87868 20 1.87868C20.5626 1.87868 21.1022 2.10218 21.5 2.5C21.8978 2.89782 22.1213 3.43739 22.1213 4C22.1213 4.56261 21.8978 5.10218 21.5 5.5L12 15L8 16L9 12L18.5 2.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Form Section -->
+      <div class="form-section">
+        <form class="profile-form">
+          <!-- Datos Personales -->
+          <div class="form-section-title">
+            <h2>Datos personales</h2>
+          </div>
+          
+          <div class="form-grid">
+            <div class="form-item">
+              <label for="nombre">Nombre</label>
+              <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" />
+            </div>
+            
+            <div class="form-item">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="tu@email.com" />
+            </div>
+            
+            <div class="form-item">
+              <label for="telefono">Teléfono</label>
+              <input type="tel" id="telefono" name="telefono" placeholder="+34 600 000 000" />
+            </div>
+            
+            <div class="form-item password-field">
+              <label for="password">Password</label>
+              <div class="password-input">
+                <input type="password" id="password" name="password" placeholder="••••••••" />
+                <button type="button" class="toggle-password" aria-label="Mostrar contraseña">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M1 12S5 4 12 4S23 12 23 12S19 20 12 20S1 12 1 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dirección -->
+          <div class="form-section-title">
+            <h2>Dirección</h2>
+          </div>
+          
+          <div class="form-grid">
+            <div class="form-item">
+              <label for="calle">Calle y número</label>
+              <input type="text" id="calle" name="calle" placeholder="Calle Principal, 123" />
+            </div>
+            
+            <div class="form-item">
+              <label for="localidad">Localidad</label>
+              <input type="text" id="localidad" name="localidad" placeholder="Madrid" />
+            </div>
+            
+            <div class="form-item">
+              <label for="codigo-postal">Código postal</label>
+              <input type="text" id="codigo-postal" name="codigo-postal" placeholder="28001" />
+            </div>
+            
+            <div class="form-item">
+              <label for="provincia">Provincia</label>
+              <input type="text" id="provincia" name="provincia" placeholder="Madrid" />
+            </div>
+          </div>
+
+          <!-- Checkbox para dirección de facturación -->
+          <div class="checkbox-container">
+            <label class="checkbox-label">
+              <input type="checkbox" id="misma-direccion" name="misma-direccion" />
+              <span class="checkmark"></span>
+              Igual que la dirección postal
+            </label>
+          </div>
+
+          <!-- Dirección de Facturación -->
+          <div class="form-item">
+            <label for="direccion-facturacion">Dirección de facturación</label>
+            <input type="text" id="direccion-facturacion" name="direccion-facturacion" placeholder="Calle Facturación, 456" />
+          </div>
+
+          <!-- Otros Datos -->
+          <div class="form-section-title">
+            <h2>Otros datos</h2>
+          </div>
+          
+          <div class="form-grid">
+            <div class="form-item">
+              <label for="dato1">Dato 1</label>
+              <input type="text" id="dato1" name="dato1" placeholder="Información adicional" />
+            </div>
+            
+            <div class="form-item">
+              <label for="dato2">Dato 2</label>
+              <input type="text" id="dato2" name="dato2" placeholder="Información adicional" />
+            </div>
+            
+            <div class="form-item">
+              <label for="dato3">Dato 3</label>
+              <input type="text" id="dato3" name="dato3" placeholder="Información adicional" />
+            </div>
+            
+            <div class="form-item">
+              <label for="dato4">Dato 4</label>
+              <input type="text" id="dato4" name="dato4" placeholder="Información adicional" />
+            </div>
+            
+            <div class="form-item">
+              <label for="dato5">Dato 5</label>
+              <input type="text" id="dato5" name="dato5" placeholder="Información adicional" />
+            </div>
+          </div>
+
+          <!-- Botón de Actualizar -->
+          <div class="form-actions">
+            <button type="submit" class="btn-update">Actualizar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
 </BaseLayout>
+
+<style>
+  .profile-page {
+    min-height: 100vh;
+    background: linear-gradient(180deg, rgba(254, 254, 254, 1) 0%, rgba(77, 39, 107, 1) 100%);
+    padding: 2rem 0;
+  }
+
+  .profile-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  /* Avatar Section */
+  .avatar-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+  }
+
+  .avatar-container {
+    position: relative;
+    display: inline-block;
+  }
+
+  .avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid var(--color-white);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  .avatar-placeholder {
+    width: 100%;
+    height: 100%;
+    background: #C4C4C4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .avatar-initials {
+    font-family: var(--font-title);
+    font-weight: 700;
+    font-size: 2rem;
+    color: var(--color-white);
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .edit-avatar-btn {
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    width: 30px;
+    height: 30px;
+    background: var(--color-primary);
+    border: none;
+    border-radius: 50%;
+    color: var(--color-white);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  .edit-avatar-btn:hover {
+    background: var(--color-secondary);
+    transform: scale(1.1);
+  }
+
+  /* Form Section */
+  .form-section {
+    background: var(--color-white);
+    border-radius: 25px 25px 0 0;
+    padding: 2rem;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  .form-section-title {
+    background: #BEAFC6;
+    margin: 0 -2rem 2rem -2rem;
+    padding: 1rem 2rem;
+  }
+
+  .form-section-title h2 {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: var(--color-neutral);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .form-item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-item label {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.875rem;
+    color: var(--color-neutral);
+    margin-bottom: 0.5rem;
+  }
+
+  .form-item input {
+    padding: 0.75rem 1rem;
+    border: 1px solid #C2C2C2;
+    border-radius: 8px;
+    font-family: var(--font-body);
+    font-size: 1.125rem;
+    color: var(--color-neutral);
+    background: var(--color-white);
+    transition: all 0.3s ease;
+  }
+
+  .form-item input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(82, 40, 114, 0.2);
+  }
+
+  .form-item input::placeholder {
+    color: #C2C2C2;
+  }
+
+  /* Password Field */
+  .password-field {
+    position: relative;
+  }
+
+  .password-input {
+    position: relative;
+  }
+
+  .password-input input {
+    padding-right: 3rem;
+  }
+
+  .toggle-password {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--color-neutral);
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+
+  .toggle-password:hover {
+    background: rgba(82, 40, 114, 0.1);
+  }
+
+  /* Checkbox */
+  .checkbox-container {
+    margin: 2rem 0;
+  }
+
+  .checkbox-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    color: var(--color-neutral);
+    text-transform: uppercase;
+    letter-spacing: 0.067em;
+  }
+
+  .checkbox-label input[type="checkbox"] {
+    display: none;
+  }
+
+  .checkmark {
+    width: 19px;
+    height: 20px;
+    border: 2px solid var(--color-neutral);
+    border-radius: 4px;
+    margin-right: 1rem;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .checkbox-label input[type="checkbox"]:checked + .checkmark {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+
+  .checkbox-label input[type="checkbox"]:checked + .checkmark::after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 6px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+
+  /* Form Actions */
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2rem;
+  }
+
+  .btn-update {
+    background: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    border-radius: 10px;
+    padding: 1rem 2rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 200px;
+  }
+
+  .btn-update:hover {
+    background: var(--color-secondary);
+    transform: translateY(-2px);
+    box-shadow: 0px 4px 8px rgba(82, 40, 114, 0.3);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .profile-page {
+      padding: 1rem 0;
+    }
+
+    .form-section {
+      padding: 1.5rem;
+      border-radius: 20px 20px 0 0;
+    }
+
+    .form-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .form-section-title {
+      margin: 0 -1.5rem 1.5rem -1.5rem;
+      padding: 0.75rem 1.5rem;
+    }
+
+    .form-section-title h2 {
+      font-size: 1.125rem;
+    }
+
+    .form-actions {
+      justify-content: center;
+    }
+
+    .btn-update {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .profile-container {
+      padding: 0 0.5rem;
+    }
+
+    .form-section {
+      padding: 1rem;
+    }
+
+    .form-section-title {
+      margin: 0 -1rem 1rem -1rem;
+      padding: 0.5rem 1rem;
+    }
+
+    .avatar {
+      width: 80px;
+      height: 80px;
+    }
+
+    .edit-avatar-btn {
+      width: 25px;
+      height: 25px;
+    }
+
+    .edit-avatar-btn svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+</style>
+
+<script>
+  // Funcionalidad para mostrar/ocultar contraseña
+  document.addEventListener('DOMContentLoaded', function() {
+    const togglePassword = document.querySelector('.toggle-password');
+    const passwordInput = document.querySelector('#password');
+    
+    if (togglePassword && passwordInput) {
+      togglePassword.addEventListener('click', function() {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+        
+        // Cambiar el icono
+        const svg = this.querySelector('svg');
+        if (type === 'text') {
+          svg.innerHTML = `
+            <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="1" y1="1" x2="23" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          `;
+        } else {
+          svg.innerHTML = `
+            <path d="M1 12S5 4 12 4S23 12 23 12S19 20 12 20S1 12 1 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          `;
+        }
+      });
+    }
+
+    // Funcionalidad para el checkbox de dirección
+    const checkbox = document.querySelector('#misma-direccion');
+    const direccionFacturacion = document.querySelector('#direccion-facturacion');
+    
+    if (checkbox && direccionFacturacion) {
+      checkbox.addEventListener('change', function() {
+        if (this.checked) {
+          direccionFacturacion.value = document.querySelector('#calle').value;
+          direccionFacturacion.disabled = true;
+        } else {
+          direccionFacturacion.disabled = false;
+        }
+      });
+    }
+
+    // Funcionalidad del formulario
+    const form = document.querySelector('.profile-form');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Aquí iría la lógica para enviar los datos
+        console.log('Formulario enviado');
+        
+        // Mostrar mensaje de éxito (temporal)
+        const btn = document.querySelector('.btn-update');
+        const originalText = btn.textContent;
+        btn.textContent = '¡Actualizado!';
+        btn.style.background = '#4CAF50';
+        
+        setTimeout(() => {
+          btn.textContent = originalText;
+          btn.style.background = '';
+        }, 2000);
+      });
+    }
+  });
+</script>
