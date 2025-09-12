@@ -7,3 +7,4 @@ psycopg2-binary>=2.9.0
 python-jose
 passlib[bcrypt]
 python-multipart
+httpx

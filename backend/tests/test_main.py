@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 from fastapi.testclient import TestClient
-from main import app
+from backend.main import app
 
 client = TestClient(app)
 
@@ -20,18 +20,21 @@ def test_root():
 
 
 def test_register_and_login():
-    new_user = {"email": "new@example.com", "password": "secret"}
+    new_user = {
+        "email": "new@example.com",
+        "password": "secret"
+    }
     response = client.post("/auth/register", json=new_user)
     assert response.status_code == 200
 
-    token = _get_token("new@example.com")
+    token = _get_token("new@example.com", "secret")
     assert token
 
 
 def test_get_users_requires_token():
     token = _get_token()
     headers = {"Authorization": f"Bearer {token}"}
-    response = client.get("/users", headers=headers)
+    response = client.get("/users/", headers=headers)
     assert response.status_code == 200
     data = response.json()
     assert isinstance(data, list)

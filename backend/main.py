@@ -59,9 +59,11 @@ def init_db():
 
 init_db()
 
+
 app.include_router(users.router)
 app.include_router(prms.router)
 app.include_router(bookings.router)
+app.include_router(auth_router, prefix="/auth")
 
 @app.get("/")
 def root():
