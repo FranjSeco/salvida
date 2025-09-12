@@ -57,10 +57,21 @@ npm run dev
 ```
 
 ### Backend
+
+#### Activar entorno virtual
+
+- En Windows (cmd):
+  ```cmd
+  backend\.venv\Scripts\activate
+  ```
+- En Bash (Git Bash, WSL, etc.):
+  ```bash
+  source backend/.venv/Scripts/activate
+  ```
+
+#### Levantar el backend
 ```bash
-cd backend
-source .venv/bin/activate
-uvicorn main:app --reload
+uvicorn backend.main:app --reload
 ```
 
 ## Cómo iniciar el backend
