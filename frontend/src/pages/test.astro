@@ -1,0 +1,224 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Calendar from '../components/Calendar.jsx';
+import BookingList from '../components/BookingList.jsx';
+import PrmList from '../components/PrmList.jsx';
+import UserProfile from '../components/UserProfile.jsx';
+---
+
+<BaseLayout title="Test de Componentes - Salvida">
+  <div class="test-page">
+    <h1>🧪 Página de Test de Componentes</h1>
+    <p>Esta página está diseñada para probar componentes de forma aislada durante el desarrollo.</p>
+    
+    <div class="test-sections">
+      <!-- Sección Calendar -->
+      <section class="test-section">
+        <h2>📅 Calendar Component</h2>
+        <p>Este es un ejemplo de uso del componente Calendar con Ant Design.</p>
+        
+        <div class="calendar-demo-container">
+          <Calendar 
+            client:load
+            onSelect={(date) => console.log('Fecha seleccionada:', date)}
+            onChange={(date) => console.log('Fecha cambiada:', date)}
+            disabledDate={(current) => current && current < new Date().setHours(0, 0, 0, 0)}
+            value={new Date()}
+          />
+        </div>
+        
+        <div class="test-info">
+          <h3>Props del Calendar:</h3>
+          <ul>
+            <li><strong>onSelect:</strong> Se ejecuta al seleccionar una fecha</li>
+            <li><strong>onChange:</strong> Se ejecuta al cambiar la fecha</li>
+            <li><strong>disabledDate:</strong> Deshabilita fechas pasadas</li>
+            <li><strong>value:</strong> Fecha actual como valor inicial</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Sección BookingList -->
+      <section class="test-section">
+        <h2>📋 BookingList Component</h2>
+        <div class="component-container">
+          <BookingList client:load />
+        </div>
+        <div class="test-info">
+          <p>Componente para mostrar la lista de reservas.</p>
+        </div>
+      </section>
+
+      <!-- Sección PrmList -->
+      <section class="test-section">
+        <h2>👥 PrmList Component</h2>
+        <div class="component-container">
+          <PrmList client:load />
+        </div>
+        <div class="test-info">
+          <p>Componente para mostrar la lista de personas con movilidad reducida.</p>
+        </div>
+      </section>
+
+      <!-- Sección UserProfile -->
+      <section class="test-section">
+        <h2>👤 UserProfile Component</h2>
+        <div class="component-container">
+          <UserProfile client:load />
+        </div>
+        <div class="test-info">
+          <p>Componente para mostrar el perfil del usuario.</p>
+        </div>
+      </section>
+    </div>
+
+    <div class="test-notes">
+      <h2>📝 Notas para Testing</h2>
+      <ul>
+        <li>Usa la consola del navegador para ver los logs de los componentes</li>
+        <li>Cada componente se carga de forma aislada con <code>client:load</code></li>
+        <li>Puedes modificar las props directamente en esta página para probar diferentes escenarios</li>
+        <li>Esta página es ideal para desarrollo y debugging de componentes</li>
+      </ul>
+    </div>
+  </div>
+
+  <style>
+    .test-page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .test-page h1 {
+      color: var(--color-primary);
+      text-align: center;
+      margin-bottom: 1rem;
+      font-size: 2.5rem;
+    }
+
+    .test-page > p {
+      text-align: center;
+      color: var(--color-neutral);
+      margin-bottom: 3rem;
+      font-size: 1.125rem;
+    }
+
+    .test-sections {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .test-section {
+      background: var(--color-background);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      border: 2px solid var(--color-border, #e0e0e0);
+    }
+
+    .test-section h2 {
+      color: var(--color-primary);
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+      border-bottom: 2px solid var(--color-primary);
+      padding-bottom: 0.5rem;
+    }
+
+    .component-container {
+      background: #f8f9fa;
+      padding: 2rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      border: 1px solid #dee2e6;
+      min-height: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .calendar-demo-container {
+      display: flex;
+      justify-content: center;
+      background: var(--color-background);
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+      margin-bottom: 1.5rem;
+    }
+
+    .test-info {
+      background: #e3f2fd;
+      padding: 1rem;
+      border-radius: 6px;
+      border-left: 4px solid var(--color-primary);
+    }
+
+    .test-info h3 {
+      color: var(--color-primary);
+      margin-bottom: 0.5rem;
+      font-size: 1.125rem;
+    }
+
+    .test-info ul {
+      margin: 0.5rem 0;
+      padding-left: 1.5rem;
+    }
+
+    .test-info li {
+      margin-bottom: 0.25rem;
+      color: var(--color-neutral);
+    }
+
+    .test-info code {
+      background: #f1f3f4;
+      padding: 0.25rem 0.5rem;
+      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.875rem;
+    }
+
+    .test-notes {
+      background: #fff3e0;
+      padding: 2rem;
+      border-radius: 8px;
+      margin-top: 3rem;
+      border-left: 4px solid #ff9800;
+    }
+
+    .test-notes h2 {
+      color: #e65100;
+      margin-bottom: 1rem;
+    }
+
+    .test-notes ul {
+      color: var(--color-neutral);
+      line-height: 1.6;
+    }
+
+    .test-notes li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .test-page {
+        padding: 1rem;
+      }
+
+      .test-section {
+        padding: 1.5rem;
+      }
+
+      .component-container {
+        padding: 1rem;
+        min-height: 150px;
+      }
+
+      .test-page h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</BaseLayout>
