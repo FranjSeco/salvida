@@ -22,7 +22,7 @@ const userMenuItems = userState.isLoggedIn ? [
 ];
 
 const iconMap = {
-  user: (
+  user: `
     <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
       <path
         d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21"
@@ -41,8 +41,8 @@ const iconMap = {
         stroke-linejoin="round"
       />
     </svg>
-  ),
-  admin: (
+  `,
+  admin: `
     <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
       <path
         d="M12 2L2 7L12 12L22 7L12 2Z"
@@ -53,8 +53,8 @@ const iconMap = {
       <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
       <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
     </svg>
-  ),
-  login: (
+  `,
+  login: `
     <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
       <path
         d="M15 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H15"
@@ -81,8 +81,8 @@ const iconMap = {
         stroke-linejoin="round"
       />
     </svg>
-  ),
-  logout: (
+  `,
+  logout: `
     <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
       <path
         d="M9 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H9"
@@ -109,8 +109,8 @@ const iconMap = {
         stroke-linejoin="round"
       />
     </svg>
-  ),
-  register: (
+  `,
+  register: `
     <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
       <path
         d="M12 19L19 12L12 5"
@@ -127,7 +127,7 @@ const iconMap = {
         stroke-linejoin="round"
       />
     </svg>
-  )
+  `
 };
 ---
 <header class="header" id="header">
@@ -180,7 +180,10 @@ const iconMap = {
         {userMenuItems.map(item => (
           <a href={item.href} class="menu-item menu-item--primary">
             {item.icon && (
-              <span class="item-icon">{iconMap[item.icon]}</span>
+              <span
+                class="item-icon"
+                set:html={iconMap[item.icon]?.trim() ?? ''}
+              ></span>
             )}
             <span class="item-text">{item.text}</span>
           </a>
