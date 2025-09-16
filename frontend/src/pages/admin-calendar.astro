@@ -1,0 +1,182 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Calendar from '../components/Calendar.jsx';
+---
+
+<BaseLayout title="Calendario Admin - Salvida">
+  <section class="admin-calendar-section">
+    <div class="page-header">
+      <h1>Calendario de Administración</h1>
+      <p>Vista completa de reservas con indicadores de estado</p>
+    </div>
+    
+    <div class="admin-controls">
+      <div class="control-group">
+        <label for="admin-mode">Modo Administrador:</label>
+        <input type="checkbox" id="admin-mode" checked disabled />
+        <span class="control-description">Indicadores de reservas activados</span>
+      </div>
+      
+      <div class="legend">
+        <h4>Leyenda de Indicadores:</h4>
+        <div class="legend-items">
+          <div class="legend-item">
+            <div class="indicator confirmed"></div>
+            <span>Reservas confirmadas</span>
+          </div>
+          <div class="legend-item">
+            <div class="indicator pending"></div>
+            <span>Reservas pendientes</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="calendar-demo">
+      <Calendar 
+        client:load
+        selectedDate={new Date()}
+        onDateSelect={(date) => {
+          console.log('Fecha seleccionada:', date);
+          // Aquí puedes filtrar las reservas por fecha
+        }}
+        isAdmin={true}
+      />
+    </div>
+    
+    <div class="admin-info">
+      <h3>Funcionalidades del Calendario Admin</h3>
+      <ul>
+        <li><strong>Indicadores verdes:</strong> Reservas confirmadas en esa fecha</li>
+        <li><strong>Indicadores naranjas:</strong> Reservas pendientes de confirmación</li>
+        <li><strong>Múltiples indicadores:</strong> Si hay varios tipos de reservas en un día</li>
+        <li><strong>Navegación completa:</strong> Cambio de mes y año para revisar reservas históricas</li>
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .admin-calendar-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  .admin-controls {
+    background: var(--color-background);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .control-group label {
+    font-weight: 600;
+    color: var(--color-accent);
+  }
+
+  .control-description {
+    font-size: 0.875rem;
+    color: var(--color-neutral);
+    font-style: italic;
+  }
+
+  .legend h4 {
+    color: var(--color-primary);
+    font-family: var(--font-title);
+    font-weight: 700;
+    margin: 0 0 1rem 0;
+    font-size: 1.125rem;
+  }
+
+  .legend-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .legend-item .indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .legend-item .indicator.confirmed {
+    background: #22c55e;
+  }
+
+  .legend-item .indicator.pending {
+    background: #f97316;
+  }
+
+  .legend-item span {
+    color: var(--color-neutral);
+    font-size: 0.875rem;
+  }
+
+  .calendar-demo {
+    margin: 2rem 0;
+  }
+
+  .admin-info {
+    background: var(--color-background);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  }
+
+  .admin-info h3 {
+    color: var(--color-primary);
+    font-family: var(--font-title);
+    font-weight: 700;
+    margin: 0 0 1rem 0;
+  }
+
+  .admin-info ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .admin-info li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(118, 85, 138, 0.2);
+    color: var(--color-neutral);
+  }
+
+  .admin-info li:last-child {
+    border-bottom: none;
+  }
+
+  .admin-info strong {
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+
+  @media (max-width: 768px) {
+    .admin-controls {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+</style>
+
