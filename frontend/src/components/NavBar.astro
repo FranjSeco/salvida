@@ -14,8 +14,8 @@ const mainLinks = [
 
 const userMenuItems = userState.isLoggedIn ? [
   { href: '/profile', text: 'PERFIL', icon: 'user' },
-  ...(userState.isAdmin ? [{ href: '/admin', text: 'ADMIN', icon: 'admin' }] : []),
-  { href: '/logout', text: 'CERRAR SESIÓN', icon: 'logout' }
+  { href: '/logout', text: 'CERRAR SESIÓN', icon: 'logout' },
+  { href: '/admin', text: 'ADMIN', icon: 'admin' }
 ] : [
   { href: '/login', text: 'ACCEDE', icon: 'login' },
   { href: '/register', text: 'CREA TU CUENTA', icon: 'register' }
@@ -112,20 +112,8 @@ const iconMap = {
   `,
   register: `
     <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
-      <path
-        d="M12 19L19 12L12 5"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-      <path
-        d="M5 12H19"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
+      <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25z" stroke="currentColor" stroke-width="1.5" fill="currentColor"/>
+      <path d="M20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" fill="currentColor"/>
     </svg>
   `
 };
@@ -158,9 +146,17 @@ const iconMap = {
         
         <!-- Botón de menú hamburguesa -->
         <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M3 12H21M3 6H21M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+      <span class="icon icon-burger" aria-hidden="true">
+        <svg width="35" height="35" viewBox="0 0 24 24" fill="none">
+          <path d="M3 12H21M3 6H21M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <span class="icon icon-close" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+          <line x1="5" y1="5" x2="19" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          <line x1="19" y1="5" x2="5" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>
+      </span>
         </button>
       </div>
     </div>
@@ -169,12 +165,7 @@ const iconMap = {
   <!-- Menú desplegable -->
   <div class="dropdown-menu" id="dropdownMenu">
     <div class="dropdown-content">
-      <button class="menu-close" id="menuClose" aria-label="Cerrar menú">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-          <line x1="5" y1="5" x2="19" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-          <line x1="19" y1="5" x2="5" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-        </svg>
-      </button>
+      
 
       <div class="menu-row user-menu">
         {userMenuItems.map(item => (
@@ -205,7 +196,7 @@ const iconMap = {
     const menuToggle = document.getElementById('menuToggle');
     const dropdownMenu = document.getElementById('dropdownMenu');
     const header = document.getElementById('header');
-    const menuClose = document.getElementById('menuClose');
+    
 
     if (menuToggle && dropdownMenu && header) {
       const openMenu = () => {
@@ -228,10 +219,6 @@ const iconMap = {
           openMenu();
         }
       });
-
-      if (menuClose) {
-        menuClose.addEventListener('click', closeMenu);
-      }
 
       dropdownMenu.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', closeMenu);
@@ -256,7 +243,7 @@ const iconMap = {
 
 <style>
   .header {
-    background: linear-gradient(90deg, rgba(254, 254, 254, 1) 0%, rgba(157, 117, 169, 1) 100%);
+    background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(82, 40, 114, 0.5) 100%);
     border-bottom: 2px solid rgba(82, 40, 114, 0.5);
     position: sticky;
     top: 0;
@@ -265,12 +252,12 @@ const iconMap = {
   }
 
   .header.menu-open {
-    background: linear-gradient(90deg, rgba(254, 254, 254, 1) 0%, rgba(157, 117, 169, 1) 100%);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(77, 39, 107, 1) 100%);
     border-radius: 0px 0px 25px 25px;
   }
 
   .top-bar {
-    background: linear-gradient(90deg, rgba(254, 254, 254, 1) 0%, rgba(157, 117, 169, 1) 100%);
+    background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(157, 117, 169, 1) 100%);
     border-bottom: 2px solid rgba(82, 40, 114, 0.5);
     position: relative;
     z-index: 1000;
@@ -379,7 +366,7 @@ const iconMap = {
 
   .menu-toggle {
     background: transparent;
-    border: 2px solid #522872;
+    border: none;
     color: #522872;
     padding: 0.5rem;
     border-radius: 5px;
@@ -395,7 +382,7 @@ const iconMap = {
   }
 
   .menu-toggle:hover {
-    background: rgba(82, 40, 114, 0.1);
+    background: transparent;
     transform: scale(1.1);
   }
 
@@ -405,7 +392,7 @@ const iconMap = {
     top: 100%;
     left: 0;
     right: 0;
-    background: linear-gradient(180deg, #4D276B 0%, #A068C0 55%, #F1E4F6 100%);
+    background: linear-gradient(180deg, rgba(254, 254, 254, 1) 0%, rgba(77, 39, 107, 1) 100%);
     border-radius: 0px 0px 25px 25px;
     box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.3);
     transform: translateY(-100%);
@@ -448,11 +435,15 @@ const iconMap = {
     justify-content: center;
     transition: background 0.3s ease, transform 0.3s ease;
   }
+  /* Iconos dentro del toggle: mostrar/ocultar según estado */
+  .menu-toggle .icon-close { display: none; }
+  .menu-toggle .icon-burger { display: inline-flex; }
+  .menu-open .menu-toggle .icon-close { display: inline-flex; }
+  .menu-open .menu-toggle .icon-burger { display: none; }
+  .menu-open .menu-toggle { color: #FEFEFE; }
 
-  .menu-close:hover {
-    background: rgba(255, 255, 255, 0.12);
-    transform: scale(1.05);
-  }
+
+  .menu-close:hover { background: transparent; transform: scale(1.05); }
 
   .menu-row {
     display: flex;
@@ -488,26 +479,17 @@ const iconMap = {
     letter-spacing: 0.06em;
   }
 
-  .menu-item--primary {
-    background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.24);
-    box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.15);
-  }
+  .menu-item--primary { background: transparent; border: none; box-shadow: none; }
 
-  .menu-item--secondary {
-    border: 1px solid transparent;
-    font-size: 18px;
-  }
+  .menu-item--secondary { font-size: 18px; border: none; }
 
   .menu-item:hover {
     transform: translateY(-2px);
-    background: rgba(255, 255, 255, 0.18);
+    background: transparent;
     text-decoration: none;
   }
 
-  .menu-item--secondary:hover {
-    background: rgba(255, 255, 255, 0.12);
-  }
+  .menu-item--secondary:hover { background: transparent; }
 
   .item-icon {
     display: flex;
@@ -553,7 +535,7 @@ const iconMap = {
       max-height: none;
       transform: translateY(-100%);
       overflow-y: auto;
-      background: linear-gradient(180deg, #5B2F79 0%, #9256AD 50%, #E7D7EF 100%);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(77, 39, 107, 1) 100%);
     }
 
     .dropdown-menu.open {
@@ -584,16 +566,15 @@ const iconMap = {
       gap: 1.75rem;
     }
 
-    .menu-row.nav-menu {
-      margin-top: auto;
-      gap: 0.75rem;
-    }
+    .menu-row.nav-menu { display: none; }
 
     .menu-item {
-      width: 100%;
-      max-width: 320px;
+      width: 330px;
+      max-width: 330px;
       justify-content: flex-start;
-      padding: 1rem 1.25rem;
+      padding: 0.5rem 1.25rem;
+      min-height: 50px;
+      gap: 9px;
     }
 
     .menu-item--secondary {
@@ -604,18 +585,12 @@ const iconMap = {
       letter-spacing: 0.12em;
     }
 
-    .menu-item--secondary:hover {
-      transform: translateY(-2px);
-      background: rgba(255, 255, 255, 0.16);
-    }
+    .menu-item--secondary:hover { transform: translateY(-2px); background: transparent; }
 
-    .item-icon {
-      width: 36px;
-      height: 36px;
-    }
+    .item-icon { width: 40px; height: 40px; }
 
     .item-text {
-      font-size: 24px;
+      font-size: 35px;
       letter-spacing: 0.08em;
     }
   }
@@ -633,9 +608,7 @@ const iconMap = {
       max-width: 280px;
     }
 
-    .item-text {
-      font-size: 22px;
-    }
+    .item-text { font-size: 35px; }
   }
 
   @media (max-width: 480px) {
@@ -648,9 +621,7 @@ const iconMap = {
       padding: 0.85rem 1rem;
     }
 
-    .item-text {
-      font-size: 20px;
-    }
+    .item-text { font-size: 35px; }
 
     .item-icon {
       width: 32px;
@@ -658,8 +629,8 @@ const iconMap = {
     }
 
     .menu-toggle {
-      width: 40px;
-      height: 40px;
+      width: 43px;
+      height: 43px;
     }
   }
 
