@@ -1,0 +1,31 @@
+{
+  "name": "salvida-project",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "front": "cd frontend && npm run dev",
+    "create:env": "cd backend && python -m venv .venv",
+    "activate:env": "cd backend && .venv\\Scripts\\activate.bat",
+    "back": "uvicorn backend.main:app --reload",
+    "server": "uvicorn backend.main:app --reload",
+    "build": "astro build",
+    "preview": "astro preview",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@astrojs/react": "^4.3.1",
+    "@nanostores/react": "^0.7.0",
+    "@tanstack/react-query": "^5.0.0",
+    "antd": "^5.27.3",
+    "astro": "^5.13.7",
+    "dayjs": "^1.11.18",
+    "nanostores": "^0.9.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^14.2.1",
+    "vitest": "^1.6.0"
+  }
+}
