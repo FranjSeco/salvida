@@ -7,9 +7,9 @@ import {
 
 const queryClient = new QueryClient();
 
-function CalendarData({ selectedDate, onDateSelect, isAdmin = false }) {
+function CalendarData({ value, onDateSelect, disabledDate, isAdmin = false }) {
   const [currentDate, setCurrentDate] = useState(new Date());
-  const [selectedDay, setSelectedDay] = useState(selectedDate);
+  const [selectedDay, setSelectedDay] = useState(value);
 
   // Obtener reservas para el mes actual
   const { data: bookings, isLoading } = useQuery({
@@ -208,14 +208,15 @@ function CalendarData({ selectedDate, onDateSelect, isAdmin = false }) {
   );
 }
 
-export default function Calendar({ selectedDate, onDateSelect, isAdmin = false }) {
+export default function Calendar({ value, disabledDate, onDateSelect, isAdmin = false }) {
   return (
     <QueryClientProvider client={queryClient}>
       <div className="calendar-wrapper">
         <CalendarData 
-          selectedDate={selectedDate} 
+          selectedDate={value} 
           onDateSelect={onDateSelect} 
           isAdmin={isAdmin} 
+          disabledDate={disabledDate}
         />
       </div>
     </QueryClientProvider>
