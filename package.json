@@ -5,9 +5,7 @@
   "type": "module",
   "scripts": {
     "front": "cd frontend && npm run dev",
-    "create:env": "cd backend && python -m venv .venv",
-    "activate:env": "cd backend && .venv\\Scripts\\activate.bat",
-    "back": "uvicorn backend.main:app --reload",
+    "back": "bash install_deps.sh && cd backend && bash -c \"source .venv/Scripts/activate && uvicorn main:app --reload\"",
     "server": "uvicorn backend.main:app --reload",
     "build": "astro build",
     "preview": "astro preview",
