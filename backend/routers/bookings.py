@@ -2,8 +2,8 @@ from typing import List
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from pydantic import BaseModel
-from ..database import get_db
-from ..models.booking import Booking
+from database import get_db
+from models.booking import Booking
 
 
 class BookingSchema(BaseModel):
