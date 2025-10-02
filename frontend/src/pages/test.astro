@@ -20,8 +20,7 @@ import UserProfile from '../components/UserProfile.jsx';
         <div class="calendar-demo-container">
           <Calendar 
             client:load={true}
-            onSelect={(date) => console.log('Fecha seleccionada:', date)}
-            onChange={(date) => console.log('Fecha cambiada:', date)}
+            onDateSelect={(date) => console.log('Fecha seleccionada:', date)}
             disabledDate={(current) => current && current < new Date().setHours(0, 0, 0, 0)}
             value={new Date()}
           />

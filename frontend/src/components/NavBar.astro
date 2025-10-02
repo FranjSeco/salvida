@@ -3,13 +3,13 @@
 const userState = {
   isLoggedIn: true,
   isAdmin: false,
-  userName: 'Fran'
+  userName: 'Fran',
 };
 
 const mainLinks = [
   { href: '/', text: 'INICIO' },
   { href: '/about', text: '¿POR QUÉ?' },
-  { href: '/about', text: 'SOBRE NOSOTRAS' }
+  { href: '/about', text: 'SOBRE NOSOTRAS' },
 ];
 
 const userMenuItems = userState.isLoggedIn ? [
@@ -117,7 +117,7 @@ const iconMap = {
     </svg>
   `
 };
----
+
 <header class="header" id="header">
   <!-- Barra superior con navegación principal -->
   <div class="top-bar">
@@ -126,26 +126,33 @@ const iconMap = {
       <div class="logo">
         <img src="/logo.png" alt="Salvida" class="logo-img" />
       </div>
-      
+
       <!-- Navegación principal -->
       <nav class="nav-main">
         <ul class="nav-list">
-          {mainLinks.map(link => (
-            <li class="nav-item">
-              <a href={link.href} class="nav-link">{link.text}</a>
-            </li>
-          ))}
+          {
+            mainLinks.map((link) => (
+              <li class="nav-item">
+                <a href={link.href} class="nav-link">
+                  {link.text}
+                </a>
+              </li>
+            ))
+          }
         </ul>
       </nav>
 
       <!-- Área de usuario -->
       <div class="user-area">
-        {userState.isLoggedIn && (
-          <span class="user-greeting">Hola, {userState.userName}</span>
-        )}
-        
+        {
+          userState.isLoggedIn && (
+            <span class="user-greeting">Hola, {userState.userName}</span>
+          )
+        }
+
         <!-- Botón de menú hamburguesa -->
         <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+
       <span class="icon icon-burger" aria-hidden="true">
         <svg width="35" height="35" viewBox="0 0 24 24" fill="none">
           <path d="M3 12H21M3 6H21M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -165,7 +172,6 @@ const iconMap = {
   <!-- Menú desplegable -->
   <div class="dropdown-menu" id="dropdownMenu">
     <div class="dropdown-content">
-      
 
       <div class="menu-row user-menu">
         {userMenuItems.map(item => (
@@ -192,13 +198,14 @@ const iconMap = {
 
 <script>
   // Funcionalidad del menú desplegable
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
     const menuToggle = document.getElementById('menuToggle');
     const dropdownMenu = document.getElementById('dropdownMenu');
     const header = document.getElementById('header');
     
 
     if (menuToggle && dropdownMenu && header) {
+
       const openMenu = () => {
         dropdownMenu.classList.add('open');
         header.classList.add('menu-open');
@@ -213,6 +220,7 @@ const iconMap = {
 
       menuToggle.addEventListener('click', function() {
         const isOpen = dropdownMenu.classList.contains('open');
+
         if (isOpen) {
           closeMenu();
         } else {
@@ -228,11 +236,12 @@ const iconMap = {
       document.addEventListener('click', function(event) {
         if (event.target instanceof Node && !header.contains(event.target) && dropdownMenu.classList.contains('open')) {
           closeMenu();
+
         }
       });
 
       // Cerrar menú con tecla Escape
-      document.addEventListener('keydown', function(event) {
+      document.addEventListener('keydown', function (event) {
         if (event.key === 'Escape' && dropdownMenu.classList.contains('open')) {
           closeMenu();
         }
@@ -291,6 +300,14 @@ const iconMap = {
     width: 103px;
     object-fit: contain;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    mask-image: radial-gradient(
+      circle,
+      rgba(0, 0, 0, 1) 95%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: cover;
   }
 
   /* Navegación principal - solo visible en desktop */
@@ -320,7 +337,7 @@ const iconMap = {
   }
 
   .nav-link {
-    color: #4D276B;
+    color: #4d276b;
     text-decoration: none;
     font-family: 'Amatica SC', cursive;
     font-weight: 700;
@@ -354,7 +371,7 @@ const iconMap = {
   }
 
   .user-greeting {
-    color: #FEFEFE;
+    color: #fefefe;
     font-family: 'Amatica SC', cursive;
     font-weight: 700;
     font-size: 30px;
@@ -372,7 +389,6 @@ const iconMap = {
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s ease;
-    display: none; /* Hidden by default, shown on mobile */
     align-items: center;
     justify-content: center;
     width: 43px;
@@ -471,7 +487,7 @@ const iconMap = {
     background: transparent;
     border-radius: 16px;
     text-decoration: none;
-    color: #FEFEFE;
+    color: #fefefe;
     transition: all 0.3s ease;
     font-family: 'Roboto Flex', sans-serif;
     font-weight: 600;
@@ -501,15 +517,16 @@ const iconMap = {
   }
 
   .item-icon svg {
-    color: #FEFEFE;
+    color: #fefefe;
   }
 
   .item-text {
     font-size: 20px;
+  /* Mobile styles */
     line-height: 1.2;
     color: #FEFEFE;
   }
-
+  
   @media (max-width: 1024px) {
     .menu-toggle {
       display: flex;
@@ -540,6 +557,9 @@ const iconMap = {
 
     .dropdown-menu.open {
       transform: translateY(0);
+      opacity: 1;
+      max-height: 500px;
+      padding: 1rem 0;
     }
 
     .dropdown-content {
@@ -599,7 +619,6 @@ const iconMap = {
     .top-bar-container {
       padding: 0 1rem;
     }
-
     .dropdown-content {
       padding: 2.5rem 1.5rem 2rem;
     }

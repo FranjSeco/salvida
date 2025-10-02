@@ -1,5 +1,5 @@
 from sqlalchemy import Column, String, ForeignKey
-from ..database import Base
+from database import Base
 
 
 class Booking(Base):

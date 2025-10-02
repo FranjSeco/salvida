@@ -34,8 +34,8 @@ import Calendar from '../components/Calendar.jsx';
     
     <div class="calendar-demo">
       <Calendar 
-        client:load
-        selectedDate={new Date()}
+        value={new Date()}
+        disabledDate={new Date()}
         onDateSelect={(date) => {
           console.log('Fecha seleccionada:', date);
           // Aquí puedes filtrar las reservas por fecha

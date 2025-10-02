@@ -1,6 +1,6 @@
 ---
-import Calendar from '../components/Calendar.jsx';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Calendar from '../components/Calendar.jsx';
 ---
 
 <BaseLayout title="Calendario - Salvida">
@@ -12,12 +12,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     
     <div class="calendar-demo">
       <Calendar 
-        client:load={true}
         onDateSelect={(date) => {
           console.log('Fecha seleccionada:', date);
-          // Aquí puedes manejar la selección de fecha
         }}
-        isAdmin={false}
+        value={new Date()}
+        disabledDate={new Date()}
       />
     </div>
     
