@@ -12,19 +12,111 @@ const mainLinks = [
   { href: '/about', text: 'SOBRE NOSOTRAS' },
 ];
 
-const userMenuItems = userState.isLoggedIn
-  ? [
-      { href: '/profile', text: 'PERFIL', icon: 'user' },
-      ...(userState.isAdmin
-        ? [{ href: '/admin', text: 'ADMIN', icon: 'admin' }]
-        : []),
-      { href: '/logout', text: 'CERRAR SESIÓN', icon: 'logout' },
-    ]
-  : [
-      { href: '/login', text: 'ACCEDE', icon: 'login' },
-      { href: '/register', text: 'CREA TU CUENTA', icon: 'register' },
-    ];
----
+const userMenuItems = userState.isLoggedIn ? [
+  { href: '/profile', text: 'PERFIL', icon: 'user' },
+  { href: '/logout', text: 'CERRAR SESIÓN', icon: 'logout' },
+  { href: '/admin', text: 'ADMIN', icon: 'admin' }
+] : [
+  { href: '/login', text: 'ACCEDE', icon: 'login' },
+  { href: '/register', text: 'CREA TU CUENTA', icon: 'register' }
+];
+
+const iconMap = {
+  user: `
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+      <path
+        d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <circle
+        cx="12"
+        cy="7"
+        r="4"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  `,
+  admin: `
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+      <path
+        d="M12 2L2 7L12 12L22 7L12 2Z"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linejoin="round"
+      />
+      <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+      <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+    </svg>
+  `,
+  login: `
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+      <path
+        d="M15 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H15"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <polyline
+        points="10,17 15,12 10,7"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <line
+        x1="15"
+        y1="12"
+        x2="3"
+        y2="12"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  `,
+  logout: `
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+      <path
+        d="M9 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H9"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <polyline
+        points="16,17 21,12 16,7"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <line
+        x1="21"
+        y1="12"
+        x2="9"
+        y2="12"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  `,
+  register: `
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+      <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25z" stroke="currentColor" stroke-width="1.5" fill="currentColor"/>
+      <path d="M20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" fill="currentColor"/>
+    </svg>
+  `
+};
 
 <header class="header" id="header">
   <!-- Barra superior con navegación principal -->
@@ -60,14 +152,18 @@ const userMenuItems = userState.isLoggedIn
 
         <!-- Botón de menú hamburguesa -->
         <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path
-              d="M3 12H21M3 6H21M3 18H21"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"></path>
-          </svg>
+
+      <span class="icon icon-burger" aria-hidden="true">
+        <svg width="35" height="35" viewBox="0 0 24 24" fill="none">
+          <path d="M3 12H21M3 6H21M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <span class="icon icon-close" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+          <line x1="5" y1="5" x2="19" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          <line x1="19" y1="5" x2="5" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>
+      </span>
         </button>
       </div>
     </div>
@@ -76,134 +172,25 @@ const userMenuItems = userState.isLoggedIn
   <!-- Menú desplegable -->
   <div class="dropdown-menu" id="dropdownMenu">
     <div class="dropdown-content">
-      <div class="menu-row">
-        <!-- Perfil -->
-        <a href="/profile" class="menu-item profile-item">
-          <div class="item-icon">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"></path>
-              <circle
-                cx="12"
-                cy="7"
-                r="4"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"></circle>
-            </svg>
-          </div>
-          <span class="item-text">PERFIL</span>
-        </a>
 
-        <!-- Admin -->
-        <a href="/admin" class="menu-item admin-item">
-          <div class="item-icon">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M12 2L2 7L12 12L22 7L12 2Z"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linejoin="round"></path>
-              <path
-                d="M2 17L12 22L22 17"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linejoin="round"></path>
-              <path
-                d="M2 12L12 17L22 12"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linejoin="round"></path>
-            </svg>
-          </div>
-          <span class="item-text">ADMIN</span>
-        </a>
+      <div class="menu-row user-menu">
+        {userMenuItems.map(item => (
+          <a href={item.href} class="menu-item menu-item--primary">
+            {item.icon && (
+              <span
+                class="item-icon"
+                set:html={iconMap[item.icon]?.trim() ?? ''}
+              ></span>
+            )}
+            <span class="item-text">{item.text}</span>
+          </a>
+        ))}
+      </div>
 
-        <!-- Accede -->
-        <a href="/login" class="menu-item login-item">
-          <div class="item-icon">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M15 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H15"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"></path>
-              <polyline
-                points="10,17 15,12 10,7"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"></polyline>
-              <line
-                x1="15"
-                y1="12"
-                x2="3"
-                y2="12"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"></line>
-            </svg>
-          </div>
-          <span class="item-text">ACCEDE</span>
-        </a>
-
-        <!-- Cerrar Sesión -->
-        <a href="/logout" class="menu-item logout-item">
-          <div class="item-icon">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M9 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H9"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"></path>
-              <polyline
-                points="16,17 21,12 16,7"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"></polyline>
-              <line
-                x1="21"
-                y1="12"
-                x2="9"
-                y2="12"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"></line>
-            </svg>
-          </div>
-          <span class="item-text">CERRAR SESIÓN</span>
-        </a>
-
-        <!-- Crear Cuenta -->
-        <a href="/register" class="menu-item register-item">
-          <div class="item-icon">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M12 19L19 12L12 5"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"></path>
-              <path
-                d="M5 12H19"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"></path>
-            </svg>
-          </div>
-          <span class="item-text">CREA TU CUENTA</span>
-        </a>
+      <div class="menu-row nav-menu">
+        {mainLinks.map(link => (
+          <a href={link.href} class="menu-item menu-item--secondary">{link.text}</a>
+        ))}
       </div>
     </div>
   </div>
@@ -215,41 +202,48 @@ const userMenuItems = userState.isLoggedIn
     const menuToggle = document.getElementById('menuToggle');
     const dropdownMenu = document.getElementById('dropdownMenu');
     const header = document.getElementById('header');
+    
 
     if (menuToggle && dropdownMenu && header) {
-      menuToggle.addEventListener('click', function () {
+
+      const openMenu = () => {
+        dropdownMenu.classList.add('open');
+        header.classList.add('menu-open');
+        menuToggle.setAttribute('aria-label', 'Cerrar menú');
+      };
+
+      const closeMenu = () => {
+        dropdownMenu.classList.remove('open');
+        header.classList.remove('menu-open');
+        menuToggle.setAttribute('aria-label', 'Abrir menú');
+      };
+
+      menuToggle.addEventListener('click', function() {
         const isOpen = dropdownMenu.classList.contains('open');
 
         if (isOpen) {
-          dropdownMenu.classList.remove('open');
-          header.classList.remove('menu-open');
-          menuToggle.setAttribute('aria-label', 'Abrir menú');
+          closeMenu();
         } else {
-          dropdownMenu.classList.add('open');
-          header.classList.add('menu-open');
-          menuToggle.setAttribute('aria-label', 'Cerrar menú');
+          openMenu();
         }
       });
 
+      dropdownMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', closeMenu);
+      });
+
       // Cerrar menú al hacer clic fuera
-      document.addEventListener('click', function (event) {
-        if (
-          event.target instanceof Node &&
-          !header.contains(event.target) &&
-          dropdownMenu.classList.contains('open')
-        ) {
-          dropdownMenu.classList.remove('open');
-          header.classList.remove('menu-open');
-          menuToggle.setAttribute('aria-label', 'Abrir menú');
+      document.addEventListener('click', function(event) {
+        if (event.target instanceof Node && !header.contains(event.target) && dropdownMenu.classList.contains('open')) {
+          closeMenu();
+
         }
       });
 
       // Cerrar menú con tecla Escape
       document.addEventListener('keydown', function (event) {
         if (event.key === 'Escape' && dropdownMenu.classList.contains('open')) {
-          dropdownMenu.classList.remove('open');
-          header.classList.remove('menu-open');
-          menuToggle.setAttribute('aria-label', 'Abrir menú');
+          closeMenu();
         }
       });
     }
@@ -258,11 +252,7 @@ const userMenuItems = userState.isLoggedIn
 
 <style>
   .header {
-    background: linear-gradient(
-      90deg,
-      rgba(254, 254, 254, 1) 0%,
-      rgba(157, 117, 169, 1) 100%
-    );
+    background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(82, 40, 114, 0.5) 100%);
     border-bottom: 2px solid rgba(82, 40, 114, 0.5);
     position: sticky;
     top: 0;
@@ -271,20 +261,12 @@ const userMenuItems = userState.isLoggedIn
   }
 
   .header.menu-open {
-    background: linear-gradient(
-      90deg,
-      rgba(254, 254, 254, 1) 0%,
-      rgba(157, 117, 169, 1) 100%
-    );
+    background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(77, 39, 107, 1) 100%);
     border-radius: 0px 0px 25px 25px;
   }
 
   .top-bar {
-    background: linear-gradient(
-      90deg,
-      rgba(254, 254, 254, 1) 0%,
-      rgba(157, 117, 169, 1) 100%
-    );
+    background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(157, 117, 169, 1) 100%);
     border-bottom: 2px solid rgba(82, 40, 114, 0.5);
     position: relative;
     z-index: 1000;
@@ -401,7 +383,7 @@ const userMenuItems = userState.isLoggedIn
 
   .menu-toggle {
     background: transparent;
-    border: 2px solid #522872;
+    border: none;
     color: #522872;
     padding: 0.5rem;
     border-radius: 5px;
@@ -416,125 +398,114 @@ const userMenuItems = userState.isLoggedIn
   }
 
   .menu-toggle:hover {
-    background: rgba(82, 40, 114, 0.1);
+    background: transparent;
     transform: scale(1.1);
   }
 
   /* Menú desplegable */
   .dropdown-menu {
-  position: fixed;
-  top: 100%;
-  left: 0;
-  right: 0;
-  background: #4d276b;
-  border-radius: 0px 0px 25px 25px;
-  box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.3);
-  transform: translateY(-100%);
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s cubic-bezier(.77,0,.18,1);
-  z-index: 10; /* Por detrás de la barra superior */
-  backdrop-filter: blur(10px);
-  max-height: 0;
-  overflow: hidden;
-  }
-
-  /* Desktop: menú flotante, junto al user-area */
-  @media (min-width: 1025px) {
-    .dropdown-menu {
-      position: absolute;
-      top: 73px;
-      right: 0;
-      left: auto;
-      width: 350px;
-      max-width: 90vw;
-      border-radius: 0 0 0 25px; /* Borde derecho plano, solo redondeado abajo a la izquierda */
-      box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.3);
-      background: #4d276b;
-      z-index: 10; /* Por detrás de la barra superior */
-      transform: translateY(-100%);
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s cubic-bezier(.77,0,.18,1);
-      max-height: 0;
-      overflow: hidden;
-      padding: 0;
-    }
-    .dropdown-menu.open {
-      transform: translateY(0);
-      opacity: 1;
-      visibility: visible;
-      max-height: 500px;
-      padding: 1rem 0;
-    }
-  }
+    position: fixed;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: linear-gradient(180deg, rgba(254, 254, 254, 1) 0%, rgba(77, 39, 107, 1) 100%);
+    border-radius: 0px 0px 25px 25px;
+    box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.3);
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    max-height: 0;
+    overflow: hidden;
   }
 
   .dropdown-menu.open {
-  transform: translateY(0);
-  opacity: 1;
-  visibility: visible;
-  max-height: 500px; /* Adjust based on your content */
-  padding: 1rem 0;
-  z-index: 10;
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+    max-height: 520px;
   }
 
   .dropdown-content {
-    padding: 0;
+    padding: 1.5rem 2rem;
     max-width: 1728px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
+    gap: 1.5rem;
     justify-content: flex-start;
+    position: relative;
   }
+
+  .menu-close {
+    display: none;
+    background: transparent;
+    border: none;
+    color: #FEFEFE;
+    cursor: pointer;
+    padding: 0.35rem;
+    border-radius: 9999px;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+  /* Iconos dentro del toggle: mostrar/ocultar según estado */
+  .menu-toggle .icon-close { display: none; }
+  .menu-toggle .icon-burger { display: inline-flex; }
+  .menu-open .menu-toggle .icon-close { display: inline-flex; }
+  .menu-open .menu-toggle .icon-burger { display: none; }
+  .menu-open .menu-toggle { color: #FEFEFE; }
+
+
+  .menu-close:hover { background: transparent; transform: scale(1.05); }
 
   .menu-row {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     gap: 1rem;
-    align-items: flex-start;
-    width: 100%;
-    padding: 1rem 2rem;
+    align-items: center;
+    justify-content: flex-end;
   }
 
-  @media (min-width: 768px) {
-    .menu-row {
-      flex-direction: row;
-      /* justify-content: flex-end; */
-      align-items: center;
-      gap: 1rem;
-      height: 100%;
-      padding: 0 2rem;
-    }
+  .menu-row.user-menu {
+    justify-content: flex-start;
+    gap: 1.25rem;
+  }
+
+  .menu-row.nav-menu {
+    justify-content: flex-end;
+    gap: 1rem;
   }
 
   .menu-item {
     display: flex;
     align-items: center;
     gap: 1rem;
-    padding: 0.5rem 1rem;
+    padding: 0.65rem 1.1rem;
     background: transparent;
-    border-radius: 5px;
+    border-radius: 16px;
     text-decoration: none;
     color: #fefefe;
     transition: all 0.3s ease;
-    width: 100%;
-    box-sizing: border-box;
+    font-family: 'Roboto Flex', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
   }
 
-  @media (min-width: 768px) {
-    .menu-item {
-      width: auto;
-      padding: 0;
-      justify-content: flex-start;
-      width: 200px;
-    }
-  }
+  .menu-item--primary { background: transparent; border: none; box-shadow: none; }
+
+  .menu-item--secondary { font-size: 18px; border: none; }
 
   .menu-item:hover {
-    transform: translateX(10px);
-    text-decoration: underline 1px var(--color-white);
+    transform: translateY(-2px);
+    background: transparent;
+    text-decoration: none;
   }
+
+  .menu-item--secondary:hover { background: transparent; }
 
   .item-icon {
     display: flex;
@@ -543,7 +514,6 @@ const userMenuItems = userState.isLoggedIn
     width: 40px;
     height: 40px;
     flex-shrink: 0;
-    margin-left: 21px;
   }
 
   .item-icon svg {
@@ -551,25 +521,22 @@ const userMenuItems = userState.isLoggedIn
   }
 
   .item-text {
-    font-family: 'Roboto Flex', sans-serif;
-    font-weight: 600;
     font-size: 20px;
-    line-height: 1.17;
-    text-transform: uppercase;
-    text-align: center;
-    vertical-align: center;
-    color: #fefefe;
-  }
   /* Mobile styles */
+    line-height: 1.2;
+    color: #FEFEFE;
+  }
+  
   @media (max-width: 1024px) {
     .menu-toggle {
-      display: flex; /* Show on mobile */
-      margin-left: auto; /* Push to the right */
+      display: flex;
+      margin-left: auto;
     }
 
     .logo {
-      position: static; /* Reset position */
+      position: static;
     }
+
     .nav-main {
       display: none;
     }
@@ -579,22 +546,13 @@ const userMenuItems = userState.isLoggedIn
     }
 
     .dropdown-menu {
-      position: absolute;
       top: 73px;
-      right: 2rem;
-      left: auto;
-      width: 350px;
-      max-width: 90vw;
-      border-radius: 0 0 25px 25px;
-      box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.3);
-      background: #4d276b;
-      z-index: 2000;
+      bottom: 0;
+      border-radius: 0;
+      max-height: none;
       transform: translateY(-100%);
-      opacity: 0;
-      transition: all 0.3s ease;
-      max-height: 0;
-      overflow: hidden;
-      padding: 0;
+      overflow-y: auto;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(77, 39, 107, 1) 100%);
     }
 
     .dropdown-menu.open {
@@ -604,12 +562,56 @@ const userMenuItems = userState.isLoggedIn
       padding: 1rem 0;
     }
 
+    .dropdown-content {
+      min-height: calc(100vh - 73px);
+      padding: 3rem 2rem 2rem;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .menu-close {
+      display: inline-flex;
+      align-self: flex-end;
+    }
+
     .menu-row {
-      padding: 0.5rem;
-      gap: 1rem;
-      .nav-link {
-        font-size: 32px;
-      }
+      flex-direction: column;
+      gap: 1.5rem;
+      width: 100%;
+      align-items: center;
+    }
+
+    .menu-row.user-menu {
+      margin-top: 1rem;
+      gap: 1.75rem;
+    }
+
+    .menu-row.nav-menu { display: none; }
+
+    .menu-item {
+      width: 330px;
+      max-width: 330px;
+      justify-content: flex-start;
+      padding: 0.5rem 1.25rem;
+      min-height: 50px;
+      gap: 9px;
+    }
+
+    .menu-item--secondary {
+      max-width: 260px;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      letter-spacing: 0.12em;
+    }
+
+    .menu-item--secondary:hover { transform: translateY(-2px); background: transparent; }
+
+    .item-icon { width: 40px; height: 40px; }
+
+    .item-text {
+      font-size: 35px;
+      letter-spacing: 0.08em;
     }
   }
 
@@ -617,78 +619,37 @@ const userMenuItems = userState.isLoggedIn
     .top-bar-container {
       padding: 0 1rem;
     }
-
-    .user-greeting {
-      font-size: 24px;
-    }
-
     .dropdown-content {
-      height: auto;
-      min-height: 73px;
-    }
-
-    .menu-row {
-      flex-direction: column;
-      gap: 0.5rem;
-      /* padding: 1rem; */
-      height: auto;
+      padding: 2.5rem 1.5rem 2rem;
     }
 
     .menu-item {
-      width: 100%;
-      max-width: 300px;
-      margin: 0 auto;
-      height: 50px;
+      max-width: 280px;
     }
 
-    .item-text {
-      font-size: 28px;
-    }
-
-    .nav-link {
-      font-size: 24px;
-    }
+    .item-text { font-size: 35px; }
   }
 
   @media (max-width: 480px) {
-    .user-greeting {
-      display: none;
-    }
-
     .dropdown-content {
-      padding: 1rem 0.25rem;
-    }
-
-    .menu-row {
-      flex-direction: column;
-      gap: 1rem;
-      padding: 0.5rem;
+      padding: 2rem 1.25rem 1.5rem;
     }
 
     .menu-item {
-      min-width: auto;
-      padding: 0.75rem;
-      margin: 0 auto;
-      height: 45px;
+      max-width: 240px;
+      padding: 0.85rem 1rem;
     }
 
-    .item-text {
-      font-size: 24px;
-    }
+    .item-text { font-size: 35px; }
 
     .item-icon {
-      width: 35px;
-      height: 35px;
-      margin-left: 15px;
+      width: 32px;
+      height: 32px;
     }
 
-    .item-icon svg {
-      width: 35px;
-      height: 35px;
-    }
-
-    .nav-link {
-      font-size: 20px;
+    .menu-toggle {
+      width: 43px;
+      height: 43px;
     }
   }
 
